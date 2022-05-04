@@ -1,1 +1,1 @@
-web: gunicorn app:kazan_server
+web: gunicorn kazan_server:app

@@ -1,1 +1,1 @@
-web: gunicorn kazan_server:app
+web: gunicorn run-heroku:app

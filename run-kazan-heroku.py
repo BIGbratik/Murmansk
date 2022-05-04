@@ -1,1 +1,0 @@
-from Kazan_Flask import kazan_server

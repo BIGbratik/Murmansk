@@ -1,0 +1,1 @@
+from kazan_server import app

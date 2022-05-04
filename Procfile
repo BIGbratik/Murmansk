@@ -1,1 +1,1 @@
-web: python kazan_server.py
+web: gunicorn app:kazan_server

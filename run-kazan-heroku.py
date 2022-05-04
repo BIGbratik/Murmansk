@@ -1,1 +1,1 @@
-from Kazan_Flask import app
+from Kazan_Flask import kazan_server

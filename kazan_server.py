@@ -1,6 +1,6 @@
-from flask import Flask, Response, render_template, request, make_response
+from flask import Flask, render_template, request, make_response
 from flask_cors import CORS
-import sys, json
+import json
 
 app = Flask(__name__)
 CORS(app)

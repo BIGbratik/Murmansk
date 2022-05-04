@@ -1,0 +1,1 @@
+from Kazan_Flask import app

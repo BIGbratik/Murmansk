@@ -425,7 +425,7 @@ async function infecInit()
 //Запрос к серверу за получением списка координат
 async function getFromServer(name)
 {
-  let response = await fetch(`https://kazan1.herokuapp.com/objects?query=${name}`,/*`http://localhost:5000/objects?query=${name}`*/,
+  let response = await fetch(`https://kazan1.herokuapp.com/objects?query=${name}`/*`http://localhost:5000/objects?query=${name}`*/,
  {
     method: 'GET',
     headers:

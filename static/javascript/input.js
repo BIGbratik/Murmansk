@@ -5,7 +5,7 @@ async function accessCtrl()
     var accKey=document.getElementById("Key").value;
     document.getElementById("Key").value="";
 
-    let response = await fetch(`http://localhost:5000/auth`,
+    let response = await fetch(`https://kazan1.herokuapp.com/auth`,
     {
         method: 'POST',
         headers: 

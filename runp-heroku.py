@@ -1,1 +1,1 @@
-from kazan_server import app
+from murmansk_server import app

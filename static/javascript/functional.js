@@ -29,7 +29,7 @@ async function postServer()
         Extra: document.getElementById('Extra').value
     };
 
-    let response = await fetch(`https://kazan1.herokuapp.com/add`,
+    let response = await fetch(/*`https://kazan1.herokuapp.com/add`*/`http://localhost:5000/add`,
     {
         method: 'POST',
         headers: 

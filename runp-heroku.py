@@ -1,1 +1,1 @@
-from murmansk_server import app
+from murmansk import app

@@ -684,6 +684,75 @@ async function infecInit()
       alert("Не удалось загрузить объекты");
   
 }
+
+//Запрос на постановку меток мест массового скопления людей
+function getMassplace() {
+  if (myMap != null) myMap.destroy();
+  ymaps.ready(massplaceInit);
+}
+//Функция постановки меток мест массового скопления людей
+async function massplaceInit() 
+{
+  document.getElementById('map').style.display = 'block';
+
+  myMap = new ymaps.Map('map', 
+  {
+    center: ctr, // Мурманск
+    zoom: 11
+  },
+  {
+    searchControlProvider: 'yandex#search'
+  });
+  clusterer = new ymaps.Clusterer(
+  {
+    preset: 'islands#invertedLightBlueClusterIcons',
+    groupByCoordinates: false,
+    clusterDisableClickZoom: true,
+    clusterHideIconOnBalloonOpen: false,
+    geoObjectHideIconOnBalloonOpen: false
+  });
+    let res = await getFromServer('massplace');
+    if (res != -1) {
+        document.getElementById("MASSPLACEnum").innerHTML = res.length;
+        geoObjects = [];
+        for (var i = 0, len = res.length; i < len; i++) {
+            if (res[i].Extra == "") 
+            {
+                geoObjects[i] = new ymaps.Placemark(
+                  [res[i].Coordinate1,res[i].Coordinate2],
+                    {
+                        balloonContentBody: res[i].Name,
+                        clusterCaption: 'Место массового скопления людей № <strong>' + (i + 1) + '</strong>'
+                    },
+                    {
+                        preset: 'islands#lightBlueGovernmentIcon'
+                    });
+            }
+            else {
+                geoObjects[i] = new ymaps.Placemark(
+                  [res[i].Coordinate1,res[i].Coordinate2],
+                    {
+                        balloonContentBody: res[i].Name,
+                        balloonContentFooter: res[i].Extra,
+                        clusterCaption: 'Место массового скопления людей № <strong>' + (i + 1) + '</strong>'
+                    },
+                    {
+                        preset: 'islands#lightBlueGovernmentIcon'
+                    });
+            }
+        }
+        clusterer.options.set(
+            {
+                gridSize: 80,
+                clusterDisableClickZoom: true
+            });
+        clusterer.add(geoObjects);
+        myMap.geoObjects.add(clusterer);
+    }
+    else
+      alert("Не удалось загрузить объекты");
+  
+}
 //Запрос к серверу за получением списка координат
 async function getFromServer(name)
 {
@@ -694,7 +763,7 @@ async function getFromServer(name)
     {
       'Content-Type': 'application/json; charset=utf-8'
     }
-  }).catch(err => alert("Кажется что-то пошло не так"));
+  }).catch(err => alert("Потеряна связь с сервером"));
 if (response.ok) 
 {
         let res = await response.json();

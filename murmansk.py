@@ -44,9 +44,9 @@ def checkKey(key):
 def addObject(data):
    file=open("./data/"+data["File"]+".txt","a",encoding='utf-8')
    if data["Extra"]!="":
-      file.write(data["Coordinate1"]+"|"+data["Coordinate2"]+"|"+data["Name"]+"|"+data["Extra"]+"\n")
+      file.write("\n"+data["Coordinate1"]+"|"+data["Coordinate2"]+"|"+data["Name"]+"|"+data["Extra"]+"\n")
    else:
-      file.write(data["Coordinate1"]+"|"+data["Coordinate2"]+"|"+data["Name"]+"\n")
+      file.write("\n"+data["Coordinate1"]+"|"+data["Coordinate2"]+"|"+data["Name"]+"\n")
 
 @app.route('/')
 def index():
